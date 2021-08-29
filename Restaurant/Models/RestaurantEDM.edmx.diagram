@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d18dbdf051274931a44fd0cf6aeff813" Name="Diagram1" ZoomLevel="110">
+        <EntityTypeShape EntityType="Models.allergen" Width="1.5" PointX="7.625" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.category" Width="1.5" PointX="0.625" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.dish" Width="1.5" PointX="5.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.dish_allergen" Width="1.5" PointX="7.625" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.menu" Width="1.5" PointX="1" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.menu_dish" Width="1.5" PointX="3.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.order" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.order_product" Width="1.5" PointX="4.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.product" Width="1.5" PointX="3.125" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.sysdiagram" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.user" Width="1.5" PointX="0.625" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="Models.FK_dish_allergen_allergen" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_product_category" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_dish_allergen_dish" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_dish_product" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_menu_dish_dish" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_menu_dish_menu" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_menu_product" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_order_product_order" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_order_user" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_order_product_product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

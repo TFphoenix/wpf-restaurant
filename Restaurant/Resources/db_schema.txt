@@ -1,0 +1,62 @@
+Category
+- code (PK)
+- name
+> BKF, MAIND, SLD, NADRK, ADRK, DSRT, SOUP, SAUC
+
+Poduct
+- id (PK)
+- name
+- category (FK)
+- photos_source
+- is_menu
+
+Dish
+- id
+- product_id (FK)
+- price
+- portion_quantity
+- total_quantity
+
+Menu
+- id (PK)
+- product_id (FK)
+
+Allergen
+- code (PK)
+- name
+> MLK, EGG, FSH, TRN, PNT, WHT, SYB
+
+User
+- id (PK)
+- first_name
+- last_name
+- email
+- password
+- phone
+- address
+- role (employed, customer)
+
+Order
+- id (PK)
+- user (FK)
+- state
+
+
+
+
+Dish_Allergen
+- id (PK)
+- dish_id (FK)
+- allergen_code (FK)
+
+Menu_Dish
+- id (PK)
+- menu_id (FK)
+- dish_id (FK)
+- quantity
+
+Order_Product
+- id (PK)
+- order_id (FK)
+- product_id (FK)
+- quantity

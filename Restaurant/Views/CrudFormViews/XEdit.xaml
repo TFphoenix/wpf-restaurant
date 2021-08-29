@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Restaurant.Views.CrudFormViews.XEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Restaurant.Views.CrudFormViews"
+             xmlns:vm="clr-namespace:Restaurant.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800"
+             Background="#F4DBB8">
+
+    <UserControl.DataContext>
+        <vm:CrudFormsViewModel x:Name="ViewModelContext"/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--Dishes List-->
+        <ScrollViewer Visibility="{Binding EditingDishesVisibility}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="5">
+            <ItemsControl ItemsSource="{Binding Dishes}" AlternationCount="2" FontSize="18" Margin="20">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="ItemRowD" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <WrapPanel Grid.Row="0" Grid.Column="0">
+                                <Label FontWeight="Bold" Content="Dish Name: "/>
+                                <Label Content="{Binding product.name}"/>
+                            </WrapPanel>
+                            <WrapPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+                                <Button Click="EditDish_OnClick" Margin="5" Width="100">Edit</Button>
+                                <Button Click="DeleteDish_OnClick" Margin="5" Width="100">Delete</Button>
+                            </WrapPanel>
+                        </Grid>
+
+                        <DataTemplate.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter Property="Background" Value="#F0CEA0" TargetName="ItemRowD"/>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="#E6BD85" TargetName="ItemRowD"/>
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <!--Menus List-->
+        <ScrollViewer Visibility="{Binding EditingMenusVisibility}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="5">
+            <ItemsControl ItemsSource="{Binding Menus}" AlternationCount="2" FontSize="18" Margin="20">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="ItemRowM" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <WrapPanel Grid.Row="0" Grid.Column="0">
+                                <Label FontWeight="Bold" Content="Menu Name: "/>
+                                <Label Content="{Binding product.name}"/>
+                            </WrapPanel>
+                            <WrapPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+                                <Button Click="EditMenu_OnClick" Margin="5" Width="100">Edit</Button>
+                                <Button Click="DeleteMenu_OnClick" Margin="5" Width="100">Delete</Button>
+                            </WrapPanel>
+                        </Grid>
+
+                        <DataTemplate.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter Property="Background" Value="#F0CEA0" TargetName="ItemRowM"/>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="#E6BD85" TargetName="ItemRowM"/>
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,32 @@
+Dark Gray
+#222222
+
+Mid Gray
+#606060
+
+Ligh Gray
+#C7C7C7
+
+White
+#F7F7F7
+
+Red
+#DB2B39
+
+Bleomarin
+#171D32
+
+Yellow
+#F3A712
+
+Skin (Dark)
+#E6BD85
+
+Skin
+#F0CEA0
+
+Skin (Light)
+#F4DBB8
+
+Blue
+#008DD5

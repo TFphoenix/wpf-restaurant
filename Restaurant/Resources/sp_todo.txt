@@ -1,0 +1,34 @@
+Stored Procedures:
+> Login (email, password)
+> Register (email) // check email dupl.
+
+> GetDishesByCategory (category_code)
+> GetMenusByCategory (category_code)
+> GetMenuDishesByProductId (product_id)
+> GetMenuPrices
+> GetProductAllergens (product_id)
+> GetProductsByCategory (category_code)
+
+
+
+CREATE/ALTER PROCEDURE dbo.spLogin
+	@Email varchar(200),
+	@Password varchar(200)
+AS
+BEGIN
+	DECLARE @sqlcmd NVARCHAR(MAX);
+	DECLARE @params NVARCHAR(MAX);
+	SET @sqlcmd = N'
+	SELECT *
+	FROM dbo.[user]
+	WHERE email = @Email
+		AND [password] = @Password';
+	SET @params = N'
+	@Email VARCHAR(200),
+	@Password VARCHAR(200)';
+	EXECUTE sp_executesql @sqlcmd, @params, @Email, @Password;
+END
+
+
+
+EXEC dbo.Login 'Email', 'Parola'

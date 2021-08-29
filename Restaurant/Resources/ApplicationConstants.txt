@@ -1,0 +1,8 @@
+x = MenuDiscount
+y = OrderPricePoint
+z = OrderTimeCount
+t = OrderTimeInterval
+w = OrderDiscount
+a = DeliveryPricePoint
+b = DeliveryPrice
+c = ProductsExpirationCount

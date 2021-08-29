@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="Restaurant.Views.CrudFormViews.MenusAdd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Restaurant.Views.CrudFormViews"
+             xmlns:vm="clr-namespace:Restaurant.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800"
+             Background="#F4DBB8">
+
+    <UserControl.DataContext>
+        <vm:CrudFormsViewModel x:Name="ViewModelContext"/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--Name-->
+        <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label FontSize="18">Name:</Label>
+            <TextBox Text="{Binding MenuFormObject.Name}" FontSize="18" MinWidth="250"></TextBox>
+        </StackPanel>
+        <!--Category-->
+        <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label FontSize="18">Category:</Label>
+            <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding MenuFormObject.Category, Mode=TwoWay}" FontSize="18" MinWidth="250">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <WrapPanel VerticalAlignment="Top">
+                                <TextBlock FontSize="10" FontWeight="Black" Text="(" />
+                                <TextBlock FontSize="10" FontWeight="Black" Text="{Binding code}" />
+                                <TextBlock FontSize="10" FontWeight="Black" Text=")" />
+                                <TextBlock Margin="5 0 0 0" Text="{Binding name}" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <!--PhotoCount-->
+        <StackPanel Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label FontSize="18">Photos Count:</Label>
+            <ComboBox ItemsSource="{Binding ProductPhotosCount}" SelectedItem="{Binding MenuFormObject.PhotosCount}" FontSize="18" MinWidth="250"/>
+        </StackPanel>
+        <!--Background Style-->
+        <Rectangle Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Fill="#F0CEA0" Margin="0 0 0 40"/>
+        <!--Menu Dishes List-->
+        <ListView ItemsSource="{Binding MenuDishes}" SelectedItem="{Binding SelectedMenuDish}" SelectionMode="Single" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" FontSize="18" Margin="10">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <WrapPanel Grid.Row="0" Grid.Column="0">
+                            <Label FontWeight="Bold" Content="Name: "/>
+                            <Label Content="{Binding dish.product.name}"/>
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="0" Grid.Column="1">
+                            <Label FontWeight="Bold" Content="Quantity: "/>
+                            <Label Content="{Binding quantity}"/>
+                            <Label Content="{Binding dish.measurement_unit}"/>
+                        </WrapPanel>
+                        <Button Click="RemoveMenuDish_OnClick" Grid.Row="0" Grid.Column="2" Margin="5" Width="100">Remove</Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <!--Dish-->
+        <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ComboBox ItemsSource="{Binding Dishes}" SelectedItem="{Binding MenuFormObject.Dish}" FontSize="18" MinWidth="250">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <WrapPanel VerticalAlignment="Top">
+                                <TextBlock FontSize="10" FontWeight="Black" Text="(" />
+                                <TextBlock FontSize="10" FontWeight="Black" Text="{Binding product.category.code}" />
+                                <TextBlock FontSize="10" FontWeight="Black" Text=")" />
+                                <TextBlock Margin="5 0 0 0" Text="{Binding product.name}" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Label FontSize="18">Dish</Label>
+        </StackPanel>
+        <!--Quantity-->
+        <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <TextBox Text="{Binding MenuFormObject.Quantity}" FontSize="18" MinWidth="250"></TextBox>
+            <Label FontSize="18">Quantity</Label>
+        </StackPanel>
+        <!--Add Dish-->
+        <Button Command="{Binding AddDishToMenuCommand}" Grid.Column="2" Grid.Row="3" FontSize="18" Width="150" VerticalAlignment="Top">Add Dish</Button>
+
+        <!--Commit-->
+        <Button Command="{Binding CommitChangesMenuCommand}" Grid.Column="1" Grid.Row="4" FontSize="18" Width="250" Margin="0 40">Commit Changes</Button>
+    </Grid>
+</UserControl>
